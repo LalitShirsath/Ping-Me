@@ -1,7 +1,7 @@
 import { Dialog, List, ListItem, Typography, Box, styled} from "@mui/material";
 import {qrCodeImage} from "../../constants/data";
 import {GoogleLogin} from "@react-oauth/google";
-
+import jwt_decode from "jwt-decode";
 
 // to arrange text and QR code side by side
 const Component = styled(Box)`
@@ -52,12 +52,13 @@ const dialogStyle = {
 
 const LoginDialog = () => {
 
-    const onLoginSuccess = () => {
-
+    const onLoginSuccess = (res) => {
+        const decoded = jwt_decode(res.credential);
+        console.log(decoded);
     }
 
-    const onLoginError = () => {
-
+    const onLoginError = (error) => {
+        console.log("login failed ", error);
     }
     
     return (
@@ -67,8 +68,8 @@ const LoginDialog = () => {
         >
 
         <Component>
-            <Container>
 
+            <Container>
                 <Title>To use WhatsApp on your compter:</Title>
                 <StyledList>
                     <ListItem>1. Open WhatsApp on your phone</ListItem>
@@ -76,6 +77,7 @@ const LoginDialog = () => {
                     <ListItem>3. Point your phone to this screen to capture the code</ListItem>
                 </StyledList>
             </Container>
+
             <Box style={{position: 'relative'}}>
                 <QRcode src={qrCodeImage} alt="QR code"/>
                 <Box style={{position: 'absolute', top:'50%', transform: 'translateX(50%)'}}>
@@ -85,6 +87,7 @@ const LoginDialog = () => {
                     />
                 </Box>
             </Box>
+
         </Component>
 
         </Dialog>
