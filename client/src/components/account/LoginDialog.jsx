@@ -2,6 +2,8 @@ import { Dialog, List, ListItem, Typography, Box, styled} from "@mui/material";
 import {qrCodeImage} from "../../constants/data";
 import {GoogleLogin} from "@react-oauth/google";
 import jwt_decode from "jwt-decode";
+import { useContext } from "react";
+import { AccountContext } from "../../context/AccountProvider";
 
 // to arrange text and QR code side by side
 const Component = styled(Box)`
@@ -52,9 +54,11 @@ const dialogStyle = {
 
 const LoginDialog = () => {
 
+    const {setAccount} = useContext(AccountContext);
+
     const onLoginSuccess = (res) => {
         const decoded = jwt_decode(res.credential);
-        console.log(decoded);
+        setAccount(decoded);
     }
 
     const onLoginError = (error) => {
@@ -65,6 +69,7 @@ const LoginDialog = () => {
         <Dialog
             open={true}
             PaperProps={{sx: dialogStyle}}
+            hideBackdrop = {true}
         >
 
         <Component>
@@ -80,7 +85,7 @@ const LoginDialog = () => {
 
             <Box style={{position: 'relative'}}>
                 <QRcode src={qrCodeImage} alt="QR code"/>
-                <Box style={{position: 'absolute', top:'50%', transform: 'translateX(50%)'}}>
+                <Box style={{position: 'absolute', top:'50%', transform: 'translateX(32%)'}}>
                     <GoogleLogin
                         onSuccess={onLoginSuccess}
                         onError={onLoginError}

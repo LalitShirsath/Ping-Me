@@ -1,3 +1,5 @@
+import { useContext } from 'react';
+import { AccountContext } from '../context/AccountProvider';
 
 // for header, import appbar and toolbar from material ui
 // styled is used for custom style
@@ -5,6 +7,7 @@ import {AppBar, Toolbar, styled, Box} from '@mui/material'
 
 // components
 import LoginDialog from "./account/LoginDialog";
+import ChatDialog from './chat/ChatDialog';
 
 // this header will have properties of AppBar and our own styling
 const Header = styled(AppBar)`
@@ -21,15 +24,25 @@ const Component = styled(Box)`
 
 
 const Messenger = () => {
+
+    const {account} = useContext(AccountContext);
+
     return (
 
         <Component>
-            <Header>
-                <Toolbar>
+            {
+                account ? <ChatDialog/>
+                :
+                <>
+                    <Header>
+                        <Toolbar>
 
-                </Toolbar>
-            </Header>
-            <LoginDialog/>
+                        </Toolbar>
+                    </Header>
+                    <LoginDialog/>
+                </>
+            }
+            
         </Component>
 
     )
