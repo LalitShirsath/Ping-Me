@@ -9,4 +9,4 @@ export const addUser = async (data) => {
     catch(error){
         console.error("Error while addUser API: ",error.message);
     }
-}
+} 
