@@ -58,7 +58,7 @@ const Conversations = () => {
                     user.sub !== account.sub &&
                     <>
                         <Compo>
-
+                            {/* <console className="log">{user.picture}</console> */}
                             <Box>
                                 <Image src={user.picture} alt="dp"/>
                                 

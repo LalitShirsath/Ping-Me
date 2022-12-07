@@ -23,5 +23,5 @@ const Messages = () => {
         </Wrapper>
     )
 }
-
+ 
 export default Messages;
