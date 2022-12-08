@@ -7,7 +7,7 @@ import { AccountContext } from "../../../context/AccountProvider";
 
 
 //components
-// import Conversation from "./Conversation";
+import Conversation from "./Conversation";
 
 const Component = styled(Box)`
     height: 81vh;
@@ -21,20 +21,6 @@ const StyledDivider = styled(Divider)`
     opacity: .6;
 `;
 
-const Compo = styled(Box)`
-    display: flex;
-    height: 45px;
-    padding: 13px 0;
-    cursor: pointer;
-`
-
-const Image = styled('img')({
-    width: 50,
-    height: 50,
-    borderRadius: '50%',
-    padding: '0 14px',
-    objectFit: 'cover'
-})
 
 const Conversations = () => {
 
@@ -54,24 +40,10 @@ const Conversations = () => {
     return (
         <Component>
             {
-                users.map(user => (
+                users.map((user) => (
                     user.sub !== account.sub &&
                     <>
-                        <Compo>
-                            {/* <console className="log">{user.picture}</console> */}
-                            <Box>
-                                <Image src={user.picture} alt="dp"/>
-                                
-                            </Box>
-
-                            <Box>
-                                <Box>
-                                    <Typography>{user.name}</Typography>
-                                </Box>
-                            </Box>
-
-                        </Compo>
-
+                        <Conversation user={user}/>
                         <StyledDivider/>
                     </>
                 ))

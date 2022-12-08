@@ -11,11 +11,15 @@ const AccountProvider = ({children}) => {
     // The set function that lets you change it to any other value in response to interaction.
     
     const [account, setAccount] = useState();
+    const [person, setPerson] = useState({});
+
 
     return (
         <AccountContext.Provider value={{
             account,
-            setAccount
+            setAccount,
+            person,
+            setPerson
         }}>
         
         {children}
