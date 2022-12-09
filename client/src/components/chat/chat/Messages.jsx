@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import {AccountContext} from "../../../context/AccountProvider";
 
 import {Box, Typography, styled} from "@mui/material";
 
@@ -13,13 +15,27 @@ const Component = styled(Box)`
     overflow-y: scroll;
 `;
 
-const Messages = () => {
+const Messages = ({person}) => {
+
+    const {account} = useContext(AccountContext);
+
+    const sendText = (e) => {
+        const code = e.keyCode || e.which;
+        if(code === 13){
+            let message = {
+                senderId: account.sub,
+                receiverId: person.sub,
+                // conversationId: 
+            }
+        }
+    };
+
     return (
         <Wrapper>
             <Component>
 
             </Component>
-            <Footer/>
+            <Footer sendText={sendText}/>
         </Wrapper>
     )
 }
