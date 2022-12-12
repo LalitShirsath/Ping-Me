@@ -1,7 +1,9 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import {AccountContext} from "../../../context/AccountProvider";
 
-import {Box, Typography, styled} from "@mui/material";
+import {Box, styled} from "@mui/material";
+
+import { newMessage } from "../../../service/api";
 
 import Footer from "./Footer";
 
@@ -15,18 +17,27 @@ const Component = styled(Box)`
     overflow-y: scroll;
 `;
 
-const Messages = ({person}) => {
+const Messages = ({person, conversation}) => {
+    const [value, setValue] = useState('');
 
     const {account} = useContext(AccountContext);
 
-    const sendText = (e) => {
+    const sendText = async (e) => {
         const code = e.keyCode || e.which;
+
+        // for enter button code is 13
         if(code === 13){
             let message = {
                 senderId: account.sub,
                 receiverId: person.sub,
-                // conversationId: 
+                conversationId: conversation._id,
+                type: 'text',
+                text: value
             }
+
+            await newMessage(message);
+
+            setValue('');
         }
     };
 
@@ -35,9 +46,12 @@ const Messages = ({person}) => {
             <Component>
 
             </Component>
-            <Footer sendText={sendText}/>
+            <Footer sendText={sendText} 
+                    setValue = {setValue}
+                    value = {value}
+            />
         </Wrapper>
     )
 }
- 
+
 export default Messages;

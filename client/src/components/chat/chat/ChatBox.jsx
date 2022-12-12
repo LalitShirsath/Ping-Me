@@ -1,6 +1,5 @@
 import { Box } from "@mui/material";
-import { useEffect } from "react";
-import { useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import { AccountContext } from "../../../context/AccountProvider";
 import { getConversation } from "../../../service/api";
 
@@ -13,11 +12,15 @@ const ChatBox = () => {
 
     const { person, account } = useContext(AccountContext)
 
+    const [conversation, setConversation] = useState({});
+
     useEffect(() => {
         const getConversationDetails = async () => {
             let data = await getConversation({senderId: account.sub, receiverId: person.sub});
-            console.log(data);
+            console.log("coverse data: ",data);
+            setConversation(data);
         }
+
         getConversationDetails();
     }, [person.sub]); 
     // whenever we select on different chats the useEffect will be called
@@ -25,7 +28,7 @@ const ChatBox = () => {
     return (
         <Box style={{height: '75%'}}>
             <ChatHeader person={person}/>
-            <Messages person={person}/>
+            <Messages person={person} conversation={conversation} />
         </Box>
     )
 }
