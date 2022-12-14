@@ -50,3 +50,13 @@ export const newMessage = async (data) => {
         console.error("Error while calling newMessage api: ",error.message);
     }
 }
+
+export const getMessages = async (id) => {
+    try{
+        let response = await axios.get(`${url}/message/get/${id}`);
+        return response.data;
+    }
+    catch(error){
+        console.error("Error while calling getMessage api: ",error.message);
+    }
+}

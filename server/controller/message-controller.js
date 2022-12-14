@@ -14,3 +14,15 @@ export const newMessage = async (req,res) => {
         return res.status(500).json(error.message);
     }
 }
+
+
+export const getMessages = async (req,res) => {
+    try{
+        // console.log("params is: ",req.params);
+        const messages = await Message.find({conversationId: req.params.id});
+        return res.status(200).json(messages);
+    }
+    catch(error){
+        return res.status(500).json(error.message);
+    }
+} 
