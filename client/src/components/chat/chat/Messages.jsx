@@ -49,7 +49,7 @@ const Messages = ({person, conversation}) => {
             </Component>
             <Footer sendText={sendText} 
                     setValue = {setValue}
-                    value = {value}
+                    value = {value} // set value as empty after sending message
             />
         </Wrapper>
     )
