@@ -30,11 +30,12 @@ const Messages = ({person, conversation}) => {
             let message = {
                 senderId: account.sub,
                 receiverId: person.sub,
-                conversationId: conversation._id,
+                conversationId: conversation[0]._id,
                 type: 'text',
                 text: value
             }
-
+            
+            console.log(message);
             await newMessage(message);
 
             setValue('');

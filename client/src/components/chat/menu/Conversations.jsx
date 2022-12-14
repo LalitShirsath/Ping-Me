@@ -1,6 +1,6 @@
 import { useEffect, useState , useContext} from "react";
 
-import { Box, Divider, Typography, styled } from "@mui/material";
+import { Box, Divider, styled } from "@mui/material";
 
 import { getUsers } from "../../../service/api";
 import { AccountContext } from "../../../context/AccountProvider";

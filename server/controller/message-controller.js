@@ -6,7 +6,7 @@ export const newMessage = async (req,res) => {
         const newMessage = new Message(req.body);
 
         await newMessage.save();
-        await Conversation.findByIdAndUpdate(req.body.conversatioId, {message: req.body.text});
+        await Conversation.findByIdAndUpdate(req.body.conversationId, {message: req.body.text});
 
         return res.status(200).json('Message sent successfully');
     }

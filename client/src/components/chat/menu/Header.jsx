@@ -44,14 +44,14 @@ const Header = () => {
     // for opening and closing profile drawer
     const [openDrawer, setOpenDrawer] = useState(false);
 
-    const toggleDraer = () => {
+    const toggleDrawer = () => {
         setOpenDrawer(true);
     }
     
     return (
         <>
             <Component>
-                <Image src={account.picture} alt="dp" onClick={() => toggleDraer()}/>
+                <Image src={account.picture} alt="dp" onClick={() => toggleDrawer()}/>
                 <Wrapper>
                     <MessageIcon/>
                     <HeaderMenu setOpenDrawer={setOpenDrawer}/>      
